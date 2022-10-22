@@ -15,7 +15,6 @@ ADD_DEFINITIONS(-Os -Wall)
 
 SET(SOURCES src/announces.c
         src/conf.c
-        src/dht.c
         src/kad.c
         src/log.c
         src/main.c
