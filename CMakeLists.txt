@@ -11,11 +11,11 @@ OPTION(ENABLE_FORWARDING "Port forwarding" OFF)
 
 set(CMAKE_C_STANDARD 11)
 #ADD_DEFINITIONS(-Os -Wall -Werror -Wmissing-declarations  -Wwrite-strings -pedantic)
-ADD_DEFINITIONS(-Os -Wall -Wwrite-strings -pedantic)
+ADD_DEFINITIONS(-Os -Wall)
 
 SET(SOURCES src/announces.c
-        src/dht.c
         src/conf.c
+        src/dht.c
         src/kad.c
         src/log.c
         src/main.c
@@ -62,7 +62,8 @@ IF(ENABLE_FORWARDING)
     ADD_DEFINITIONS(-DFWD)
 ENDIF()
 
-include_directories(${CMAKE_SOURCE_DIR}/src)
+#include_directories(${CMAKE_SOURCE_DIR}/src)
 add_executable(KadNode ${SOURCES})
 target_link_libraries(KadNode mbedtls mbedx509 mbedcrypto)
-target_include_directories(KadNode PRIVATE ${CMAKE_SOURCE_DIR}/src/)
+#target_include_directories(KadNode PRIVATE ${CMAKE_SOURCE_DIR}/src/*.h)
+target_include_directories(KadNode PRIVATE ${CMAKE_SOURCE_DIR}/headers/)
